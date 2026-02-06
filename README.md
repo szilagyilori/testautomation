@@ -1,1 +1,110 @@
-# testautomation
+# Test Automation Project Setup
+This guide explains how to set up a Cypress + TypeScript test automation project from scratch.
+
+## 1. Install [Node.js](https://nodejs.org/en/download)
+Verify the installation:
+```bash
+node -v
+npm -v
+```
+
+navigate to the project and initialize the Node project
+```bash
+npm init -y
+```
+This creates a package.json file.
+
+## 2. Install Cypress and related packages
+```bash
+npm install --save-dev cypress typescript ts-node @types/node @types/cypress
+```
+- cypress → End-to-end testing framework
+- typescript → TypeScript support
+- ts-node → Run TypeScript files in Node
+- @types/node → Node type definitions
+- @types/cypress → Cypress type definitions
+
+## 3. Initialize Cypress
+```bash
+npx cypress open
+```
+
+This creates the cypress/ folder and default configuration files.
+
+The Cypress GUI will open for the first run.
+
+## 4. Configure TypeScript 
+Create a tsconfig.json file in the root of your project:
+```json
+{
+"compilerOptions": {
+    "target": "ES6",
+    "lib": ["ES6", "DOM"],
+    "types": ["cypress", "node"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+},
+"include": ["cypress/**/*.ts"]
+}
+```
+This ensures TypeScript recognizes Cypress and Node types.
+
+## 5. Update package.json scripts
+Add the following scripts for easy test execution:
+```json
+"scripts": {
+"cy:open": "cypress open",
+"cy:run": "cypress run"
+},
+```
+
+## 6. Running Cypress
+Open the Cypress GUI:
+```bash
+npm run cy:open
+```
+
+Run tests headless:
+```bash
+npm run cy:run
+```
+
+## 7. GitHub Actions Pipeline
+
+You can set up a GitHub Actions workflow to run your Cypress + TypeScript tests automatically on push or pull request.
+
+Create a file in your repository: `.github/workflows/cypress.yml`  
+
+Example workflow:
+
+```yaml
+name: Cypress Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+```
+Install GitHub Actions extension to VS Code
