@@ -24,6 +24,14 @@ npm install --save-dev cypress typescript ts-node @types/node @types/cypress
 - @types/node → Node type definitions
 - @types/cypress → Cypress type definitions
 
+```bash
+npm install --save-dev cypress-real-events
+npm install --save-dev cypress-terminal-report
+npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-cypress
+npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+
+```
+
 ## 3. Initialize Cypress
 ```bash
 npx cypress open
@@ -107,4 +115,59 @@ jobs:
         with:
           browser: chrome
 ```
+
+## 8. VS Code extensions and settings
 Install GitHub Actions extension to VS Code
+ESLint (Microsoft)
+Test Utils
+
+go to settings -> search: format on save -> Check: 'Editor: Format On Save'
+
+go to settings -> search: eslint validate -> Edit in settings.json
+```json
+{
+    "editor.formatOnSave": true,
+    "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+    "eslint.workingDirectories": [
+        {
+            "mode": "auto"
+        }
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
+    }
+}
+```
+
+create .eslintrc.js file in the root
+```js
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'cypress', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:cypress/recommended',
+    'plugin:prettier/recommended',
+  ],
+  env: {
+    browser: true,
+    es2021: true,
+    'cypress/globals': true,
+  },
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        semi: true,
+        tabWidth: 2,
+        trailingComma: 'all',
+        printWidth: 100,
+      },
+    ],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+  },
+};
+
+```

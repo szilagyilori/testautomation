@@ -14,4 +14,10 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
+import './utility';
+import '../../node_modules/cypress-real-events'
+import installLogsCollector from 'cypress-terminal-report/src/installLogsCollector';
+
+
+installLogsCollector();
