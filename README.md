@@ -8,6 +8,14 @@ node -v
 npm -v
 ```
 
+Install [Node Version Manager](https://github.com/coreybutler/nvm-windows/releases)
+nvm-setup-exe
+
+```bash
+nvm install 20.11.1
+nvm use 20.11.1
+```
+
 navigate to the project and initialize the Node project
 ```bash
 npm init -y
@@ -171,3 +179,7 @@ module.exports = {
 };
 
 ```
+
+//
+npm uninstall ts-node
+type-commonjs törlése

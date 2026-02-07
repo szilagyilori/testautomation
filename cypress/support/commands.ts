@@ -1,4 +1,4 @@
-import 'cypress';
+/// <reference types="cypress" />
 import { LoginPageLocators } from '../fixtures/locators';
 
 
