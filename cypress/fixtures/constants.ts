@@ -1,4 +1,4 @@
 export const credentials = {
-    standard_user: 'standard_user',
-    password: 'secret_sauce',
+    user: 'szilagyilori',
+    password: 'Wer.wer1',
 };

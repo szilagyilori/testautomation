@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/szilagyilori/testautomation#readme",
   "devDependencies": {
-    "@types/node": "20",
+    "@types/node": "24",
     "cypress": "^15.10.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"

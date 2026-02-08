@@ -12,8 +12,7 @@ Install [Node Version Manager](https://github.com/coreybutler/nvm-windows/releas
 nvm-setup-exe
 
 ```bash
-nvm install 20.11.1
-nvm use 20.11.1
+nvm use 24
 ```
 
 navigate to the project and initialize the Node project
@@ -24,21 +23,21 @@ This creates a package.json file.
 
 ## 2. Install Cypress and related packages
 ```bash
-npm install --save-dev cypress typescript ts-node @types/node @types/cypress
+npm install --save-dev cypress typescript ts-node @types/node
 ```
-- cypress → End-to-end testing framework
-- typescript → TypeScript support
-- ts-node → Run TypeScript files in Node
-- @types/node → Node type definitions
-- @types/cypress → Cypress type definitions
+- cypress@15.10.0 → End-to-end testing framework
+- typescript@5.9.3 → TypeScript support
+- ts-node@10.9.2 → Run TypeScript files in Node
+- @types/node@24.10.12 → Node type definitions
 
+<!-- SKIP 
 ```bash
 npm install --save-dev cypress-real-events
 npm install --save-dev cypress-terminal-report
 npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-cypress
 npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
-
 ```
+-->
 
 ## 3. Initialize Cypress
 ```bash
@@ -53,16 +52,21 @@ The Cypress GUI will open for the first run.
 Create a tsconfig.json file in the root of your project:
 ```json
 {
-"compilerOptions": {
-    "target": "ES6",
-    "lib": ["ES6", "DOM"],
-    "types": ["cypress", "node"],
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": [
+      "ES2020",
+      "DOM"
+    ],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-},
-"include": ["cypress/**/*.ts"]
+  },
+  "include": [
+    "cypress/**/*.ts"
+  ]
 }
 ```
 This ensures TypeScript recognizes Cypress and Node types.
@@ -125,10 +129,12 @@ jobs:
 ```
 
 ## 8. VS Code extensions and settings
-Install GitHub Actions extension to VS Code
-ESLint (Microsoft)
-Test Utils
+### VS Code extensions
+- Install GitHub Actions extension to VS Code
+- ESLint (Microsoft)
+- Test Utils
 
+<!-- 
 go to settings -> search: format on save -> Check: 'Editor: Format On Save'
 
 go to settings -> search: eslint validate -> Edit in settings.json
@@ -179,7 +185,4 @@ module.exports = {
 };
 
 ```
-
-//
-npm uninstall ts-node
-type-commonjs törlése
+--->
